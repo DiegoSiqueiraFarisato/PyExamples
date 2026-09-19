@@ -1,0 +1,85 @@
+{
+  "info": {
+    "name": "App Server",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{base_url}}/health" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));",
+        "pm.test('status is ok', () => pm.expect(pm.response.json().status).to.eql('ok'));"
+      ] } }]
+    },
+    {
+      "name": "Create order",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base_url}}/orders",
+        "body": { "mode": "raw", "raw": "{\n  \"item\": \"book\",\n  \"quantity\": 2\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('201 Created', () => pm.response.to.have.status(201));",
+        "const o = pm.response.json();",
+        "pm.test('has id and status created', () => { pm.expect(o.id).to.be.a('number'); pm.expect(o.status).to.eql('created'); });",
+        "pm.collectionVariables.set('order_id', o.id);"
+      ] } }]
+    },
+    {
+      "name": "Get order (broker should have shipped it)",
+      "request": { "method": "GET", "url": "{{base_url}}/orders/{{order_id}}" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));",
+        "// 'created' if you send this instantly, 'shipped' once the broker delivered the messages",
+        "pm.test('status is created or shipped', () => pm.expect(['created','shipped']).to.include(pm.response.json().status));",
+        "console.log('order status:', pm.response.json().status);"
+      ] } }]
+    },
+    {
+      "name": "Get unknown order (404)",
+      "request": { "method": "GET", "url": "{{base_url}}/orders/999999" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('404 Not Found', () => pm.response.to.have.status(404));"
+      ] } }]
+    },
+    {
+      "name": "Create order - invalid quantity (422)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base_url}}/orders",
+        "body": { "mode": "raw", "raw": "{\n  \"item\": \"book\",\n  \"quantity\": 0\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('422 Unprocessable', () => pm.response.to.have.status(422));"
+      ] } }]
+    },
+    {
+      "name": "Shipping - shipped orders",
+      "request": { "method": "GET", "url": "{{base_url}}/shipping" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));",
+        "pm.test('is a list', () => pm.expect(pm.response.json()).to.be.an('array'));"
+      ] } }]
+    },
+    {
+      "name": "Broker stats",
+      "request": { "method": "GET", "url": "{{base_url}}/broker/stats" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));",
+        "pm.test('broker running', () => pm.expect(pm.response.json().running).to.eql(true));"
+      ] } }]
+    },
+    {
+      "name": "Broker dead letters",
+      "request": { "method": "GET", "url": "{{base_url}}/broker/dead-letters" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('200 OK', () => pm.response.to.have.status(200));",
+        "pm.test('is a list', () => pm.expect(pm.response.json()).to.be.an('array'));"
+      ] } }]
+    }
+  ],
+  "variable": [{ "key": "order_id", "value": "1" }]
+}
