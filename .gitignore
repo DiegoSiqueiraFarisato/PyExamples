@@ -1,0 +1,3 @@
+/App/Server/.venv
+/App/Server/.pytest_cache
+/App/Server/.mypy_cache
