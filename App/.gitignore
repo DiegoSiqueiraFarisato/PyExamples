@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Ferramentas
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Ambientes virtuais
+.venv/
+venv/
+
+# Arquivos gerados ao rodar os materiais
+saida_09_arquivos/
+saida_10_respostas/
+tarefas/tarefas.json
+
+# Editor / sistema
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
