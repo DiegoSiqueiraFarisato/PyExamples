@@ -32,7 +32,7 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 | 5 | [`09_arquivos.py`](09_arquivos.py) | [`10_respostas_arquivos.py`](10_respostas_arquivos.py) | caminhos, `pathlib`, modos de `open`, `with`, ler/escrever/acrescentar, encoding, pastas, CSV, JSON, mini projeto de tarefas |
 | 6 | [`11_modulos.py`](11_modulos.py) | [`12_respostas_modulos.py`](12_respostas_modulos.py) | formas de `import`, biblioteca padrão, módulos próprios, `__name__`, pacotes e `__init__.py`, `sys.path`, `pip`, `venv`, `requirements.txt` |
 | 7 | [`13_classes.py`](13_classes.py) | [`14_respostas_classes.py`](14_respostas_classes.py) | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
-| 8 | [`15_testes.py`](15_testes.py) | *em breve* | `assert`, `pytest`, como ler falhas, padrão AAA, `pytest.raises`, `pytest.approx`, `parametrize`, fixtures, `conftest.py`, `tmp_path`, código testável, o que testar, cobertura, TDD |
+| 8 | [`15_testes.py`](15_testes.py) | [`16_respostas_testes.py`](16_respostas_testes.py) e [`tests/test_respostas_exercicios.py`](tests/test_respostas_exercicios.py) | `assert`, `pytest`, como ler falhas, padrão AAA, `pytest.raises`, `pytest.approx`, `parametrize`, fixtures, `conftest.py`, `tmp_path`, código testável, o que testar, cobertura, TDD |
 
 ## Pacotes de exemplo
 
@@ -48,6 +48,7 @@ utilidades/       respostas dos exercícios 5, 6 e 7 de módulos
   __init__.py
   conversoes.py   teste com: python utilidades/conversoes.py
   validacoes.py
+  entrada.py      pedir_inteiro (exercício 10 de testes)
 
 tarefas/          resposta do exercício 11 de módulos (lista de tarefas em JSON)
   __init__.py
@@ -60,10 +61,11 @@ loja/             código testado no material 15_testes.py
   precos.py
   carrinho.py
 
-tests/            testes do pacote loja (pytest)
+tests/            testes (pytest)
   conftest.py
   test_precos.py
   test_carrinho.py
+  test_respostas_exercicios.py   respostas dos exercícios de testes
 ```
 
 ## Rodando os testes
@@ -86,4 +88,8 @@ Alguns scripts criam arquivos de exemplo. Esses arquivos estão no `.gitignore` 
 
 ## Próximos passos
 
-- Respostas dos exercícios de testes
+Assuntos sugeridos para continuar:
+
+- Expressões regulares (`re`)
+- Consumir APIs com `requests`
+- Banco de dados com `sqlite3`

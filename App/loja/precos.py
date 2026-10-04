@@ -5,6 +5,7 @@ Testado por tests/test_precos.py.
 
 FRETE_PADRAO = 19.90
 VALOR_FRETE_GRATIS = 200.00
+MAXIMO_PARCELAS = 12
 
 
 def aplicar_desconto(preco: float, percentual: float) -> float:
@@ -21,6 +22,17 @@ def calcular_frete(valor_compra: float) -> float:
     if valor_compra >= VALOR_FRETE_GRATIS:
         return 0.0
     return FRETE_PADRAO
+
+
+def calcular_parcelas(valor: float, vezes: int) -> float:
+    """Valor de cada parcela, arredondado em 2 casas (1 a 12 vezes).
+
+    Criada com TDD no exercício 8 do material 15_testes.py: os testes
+    (tests/test_respostas_exercicios.py) foram escritos ANTES.
+    """
+    if not 1 <= vezes <= MAXIMO_PARCELAS:
+        raise ValueError(f"parcelas devem ser de 1 a {MAXIMO_PARCELAS}: {vezes}")
+    return round(valor / vezes, 2)
 
 
 def formatar_preco(valor: float) -> str:
