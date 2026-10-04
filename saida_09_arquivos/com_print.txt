@@ -1,0 +1,2 @@
+Linha escrita com print
+Total: 42

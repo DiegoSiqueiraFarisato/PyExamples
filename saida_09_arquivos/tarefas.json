@@ -1,0 +1,14 @@
+[
+  {
+    "titulo": "Estudar arquivos",
+    "feita": true
+  },
+  {
+    "titulo": "Fazer exercícios de arquivos",
+    "feita": false
+  },
+  {
+    "titulo": "Estudar módulos",
+    "feita": false
+  }
+]

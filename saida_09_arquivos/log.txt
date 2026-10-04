@@ -1,0 +1,3 @@
+[INFO] programa iniciado
+[INFO] usuário logou
+[INFO] relatório gerado
