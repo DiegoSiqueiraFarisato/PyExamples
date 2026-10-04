@@ -4,8 +4,9 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 
 ## Requisitos
 
-- **Python 3.10 ou mais novo.** Os materiais usam type hints como `str | None` e `list[str]`. Foram testados no Python 3.14.
-- Nenhuma biblioteca externa. Só o exercício 10 de módulos usa `requests`, e ele é opcional.
+- **Python 3.10 ou mais novo.** Os materiais usam type hints como `str | None` e `list[str]`. Foram testados no Python 3.13 e no 3.14.
+- Os materiais 1 a 7 não usam nenhuma biblioteca externa. Só o exercício 10 de módulos usa `requests`, e ele é opcional.
+- O material 8 (testes) usa o `pytest`: `python -m pip install pytest`.
 
 ## Como estudar
 
@@ -31,10 +32,11 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 | 5 | [`09_arquivos.py`](09_arquivos.py) | [`10_respostas_arquivos.py`](10_respostas_arquivos.py) | caminhos, `pathlib`, modos de `open`, `with`, ler/escrever/acrescentar, encoding, pastas, CSV, JSON, mini projeto de tarefas |
 | 6 | [`11_modulos.py`](11_modulos.py) | [`12_respostas_modulos.py`](12_respostas_modulos.py) | formas de `import`, biblioteca padrão, módulos próprios, `__name__`, pacotes e `__init__.py`, `sys.path`, `pip`, `venv`, `requirements.txt` |
 | 7 | [`13_classes.py`](13_classes.py) | [`14_respostas_classes.py`](14_respostas_classes.py) | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
+| 8 | [`15_testes.py`](15_testes.py) | *em breve* | `assert`, `pytest`, como ler falhas, padrão AAA, `pytest.raises`, `pytest.approx`, `parametrize`, fixtures, `conftest.py`, `tmp_path`, código testável, o que testar, cobertura, TDD |
 
 ## Pacotes de exemplo
 
-Os materiais de módulos usam pastas que funcionam como pacotes de verdade:
+Os materiais de módulos e de testes usam pastas que funcionam como pacotes de verdade:
 
 ```
 meus_modulos/     exemplo usado em 11_modulos.py
@@ -52,7 +54,27 @@ tarefas/          resposta do exercício 11 de módulos (lista de tarefas em JSO
   armazenamento.py
   operacoes.py
   main.py         rode com: python -m tarefas.main
+
+loja/             código testado no material 15_testes.py
+  __init__.py
+  precos.py
+  carrinho.py
+
+tests/            testes do pacote loja (pytest)
+  conftest.py
+  test_precos.py
+  test_carrinho.py
 ```
+
+## Rodando os testes
+
+Na pasta `App`, rode:
+
+```bash
+python -m pytest -v
+```
+
+O `pytest.ini` limita a busca à pasta `tests/`, para o `pytest` não misturar estes testes com os do `Server/`, que têm configuração própria.
 
 ## Arquivos gerados ao rodar
 
@@ -64,4 +86,4 @@ Alguns scripts criam arquivos de exemplo. Esses arquivos estão no `.gitignore` 
 
 ## Próximos passos
 
-- Testes automatizados com `pytest`
+- Respostas dos exercícios de testes
