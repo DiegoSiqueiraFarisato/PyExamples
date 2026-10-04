@@ -7,6 +7,7 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 - **Python 3.10 ou mais novo.** Os materiais usam type hints como `str | None` e `list[str]`. Foram testados no Python 3.13 e no 3.14.
 - Os materiais 1 a 7 não usam nenhuma biblioteca externa. Só o exercício 10 de módulos usa `requests`, e ele é opcional.
 - O material 8 (testes) usa o `pytest`: `python -m pip install pytest`.
+- O material 9 (FastAPI) usa o FastAPI: `python -m pip install "fastapi[standard]"`.
 
 ## Como estudar
 
@@ -33,6 +34,7 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 | 6 | [`11_modulos.py`](11_modulos.py) | [`12_respostas_modulos.py`](12_respostas_modulos.py) | formas de `import`, biblioteca padrão, módulos próprios, `__name__`, pacotes e `__init__.py`, `sys.path`, `pip`, `venv`, `requirements.txt` |
 | 7 | [`13_classes.py`](13_classes.py) | [`14_respostas_classes.py`](14_respostas_classes.py) | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
 | 8 | [`15_testes.py`](15_testes.py) | [`16_respostas_testes.py`](16_respostas_testes.py) e [`tests/test_respostas_exercicios.py`](tests/test_respostas_exercicios.py) | `assert`, `pytest`, como ler falhas, padrão AAA, `pytest.raises`, `pytest.approx`, `parametrize`, fixtures, `conftest.py`, `tmp_path`, código testável, o que testar, cobertura, TDD |
+| 9 | [`17_fastapi.py`](17_fastapi.py) | *em breve* | APIs e HTTP, métodos e status codes, rotas, parâmetros de caminho e de query, Pydantic, `HTTPException`, CRUD, `Depends`, headers, `async`, documentação `/docs`, `TestClient`, `APIRouter`, organização de projetos |
 
 ## Pacotes de exemplo
 
@@ -66,6 +68,7 @@ tests/            testes (pytest)
   test_precos.py
   test_carrinho.py
   test_respostas_exercicios.py   respostas dos exercícios de testes
+  test_fastapi.py                testes da API do 17_fastapi.py
 ```
 
 ## Rodando os testes
@@ -86,10 +89,18 @@ Alguns scripts criam arquivos de exemplo. Esses arquivos estão no `.gitignore` 
 - `saida_10_respostas/`: criada por `10_respostas_arquivos.py`. Ela é mantida entre execuções para mostrar o log crescendo e a agenda salva
 - `tarefas/tarefas.json`: criado pelo menu `python -m tarefas.main`
 
+## Rodando a API do material de FastAPI
+
+O `17_fastapi.py` funciona de dois jeitos:
+
+```bash
+python 17_fastapi.py                       # mostra requisições e respostas no terminal
+python -m uvicorn 17_fastapi:app --reload  # sobe o servidor de verdade
+```
+
+Com o servidor rodando, abra http://127.0.0.1:8000/docs para testar a API pelo navegador.
+
 ## Próximos passos
 
-Assuntos sugeridos para continuar:
-
-- Expressões regulares (`re`)
-- Consumir APIs com `requests`
-- Banco de dados com `sqlite3`
+- Respostas dos exercícios de FastAPI
+- Outros assuntos sugeridos: expressões regulares (`re`), consumir APIs com `requests`, banco de dados com `sqlite3`
