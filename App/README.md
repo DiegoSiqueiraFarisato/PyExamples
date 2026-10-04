@@ -30,7 +30,7 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 | 4 | [`07_tratamento_erros.py`](07_tratamento_erros.py) | [`08_respostas_erros.py`](08_respostas_erros.py) | traceback, exceções comuns, `try/except/else/finally`, `raise`, exceções próprias, validação de entrada, EAFP vs LBYL, hierarquia de exceções, más práticas |
 | 5 | [`09_arquivos.py`](09_arquivos.py) | [`10_respostas_arquivos.py`](10_respostas_arquivos.py) | caminhos, `pathlib`, modos de `open`, `with`, ler/escrever/acrescentar, encoding, pastas, CSV, JSON, mini projeto de tarefas |
 | 6 | [`11_modulos.py`](11_modulos.py) | [`12_respostas_modulos.py`](12_respostas_modulos.py) | formas de `import`, biblioteca padrão, módulos próprios, `__name__`, pacotes e `__init__.py`, `sys.path`, `pip`, `venv`, `requirements.txt` |
-| 7 | [`13_classes.py`](13_classes.py) | *em breve* | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
+| 7 | [`13_classes.py`](13_classes.py) | [`14_respostas_classes.py`](14_respostas_classes.py) | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
 
 ## Pacotes de exemplo
 
@@ -64,5 +64,4 @@ Alguns scripts criam arquivos de exemplo. Esses arquivos estão no `.gitignore` 
 
 ## Próximos passos
 
-- Respostas dos exercícios de classes
 - Testes automatizados com `pytest`
