@@ -255,6 +255,24 @@ def test_patch_com_dados_invalidos_devolve_422_e_nao_altera(cliente, tarefas_exe
     assert cliente.get("/tarefas/1").json()["prioridade"] == "alta"
 
 
+@pytest.mark.parametrize("campo", ["titulo", "prioridade", "feita"])
+def test_patch_com_null_em_campo_obrigatorio_devolve_422_e_nao_altera(cliente, tarefas_exemplo, campo):
+    # "Opcional" no PATCH quer dizer "pode não ser enviado", e não
+    # "pode virar null". Sem a validação, a tarefa ficaria sem título.
+    resposta = cliente.patch("/tarefas/1", json={campo: None})
+
+    assert resposta.status_code == 422
+    assert cliente.get("/tarefas/1").json() == tarefas_exemplo[0]
+
+
+def test_patch_com_descricao_null_apaga_a_descricao(cliente, tarefas_exemplo):
+    # Já na descrição (que pode ser vazia), null é um jeito válido de apagar
+    resposta = cliente.patch("/tarefas/3", json={"descricao": None})
+
+    assert resposta.status_code == 200
+    assert resposta.json()["descricao"] is None
+
+
 def test_patch_em_tarefa_inexistente_devolve_404(cliente):
     assert cliente.patch("/tarefas/999", json={"feita": True}).status_code == 404
 

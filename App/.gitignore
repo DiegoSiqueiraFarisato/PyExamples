@@ -15,6 +15,7 @@ venv/
 saida_09_arquivos/
 saida_10_respostas/
 tarefas/tarefas.json
+api_contatos/contatos.json
 
 # Editor / sistema
 .vscode/

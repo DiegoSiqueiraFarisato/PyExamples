@@ -38,7 +38,7 @@ from typing import Annotated, Literal
 
 try:
     from fastapi import Depends, FastAPI, Header, HTTPException, Query, status
-    from pydantic import BaseModel, Field
+    from pydantic import BaseModel, Field, field_validator
 except ImportError:
     print("O FastAPI não está instalado neste Python. Instale com:")
     print('  python -m pip install "fastapi[standard]"')
@@ -216,6 +216,19 @@ class TarefaAtualizar(BaseModel):
     descricao: str | None = None
     prioridade: Prioridade | None = None
     feita: bool | None = None
+
+    # PEGADINHA: "opcional" (pode NÃO ser enviado) é diferente de "pode
+    # ser null". Sem esta validação, {"titulo": null} seria aceito e a
+    # tarefa ficaria SEM título. @field_validator cria uma regra própria:
+    # se levantar ValueError, o FastAPI responde 422. Ela só roda para
+    # campos ENVIADOS, então não enviar o campo continua permitido.
+    # (descricao fica de fora de propósito: null ali = apagar a descrição)
+    @field_validator("titulo", "prioridade", "feita")
+    @classmethod
+    def nao_aceitar_null(cls, valor):
+        if valor is None:
+            raise ValueError("não pode ser null (para não alterar, não envie o campo)")
+        return valor
 
 
 class Tarefa(TarefaCriar):
@@ -510,6 +523,8 @@ async def status_api() -> dict:
 # ERRO 5: devolver dados sensíveis (senha, token) na resposta. Use um
 #         response_model SEM esses campos.
 # ERRO 6: PATCH sem exclude_unset=True, apagando campos não enviados.
+#         E o irmão dele: aceitar {"titulo": null} no PATCH só porque o
+#         campo é opcional. Veja o @field_validator em TarefaAtualizar.
 # ERRO 7: duas rotas conflitando: /tarefas/{tarefa_id} declarada ANTES
 #         de /tarefas/pendentes faz "pendentes" ser lido como id (e dar
 #         422). Rotas fixas vêm ANTES das rotas com parâmetro.

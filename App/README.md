@@ -34,7 +34,7 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 | 6 | [`11_modulos.py`](11_modulos.py) | [`12_respostas_modulos.py`](12_respostas_modulos.py) | formas de `import`, biblioteca padrão, módulos próprios, `__name__`, pacotes e `__init__.py`, `sys.path`, `pip`, `venv`, `requirements.txt` |
 | 7 | [`13_classes.py`](13_classes.py) | [`14_respostas_classes.py`](14_respostas_classes.py) | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
 | 8 | [`15_testes.py`](15_testes.py) | [`16_respostas_testes.py`](16_respostas_testes.py) e [`tests/test_respostas_exercicios.py`](tests/test_respostas_exercicios.py) | `assert`, `pytest`, como ler falhas, padrão AAA, `pytest.raises`, `pytest.approx`, `parametrize`, fixtures, `conftest.py`, `tmp_path`, código testável, o que testar, cobertura, TDD |
-| 9 | [`17_fastapi.py`](17_fastapi.py) | *em breve* | APIs e HTTP, métodos e status codes, rotas, parâmetros de caminho e de query, Pydantic, `HTTPException`, CRUD, `Depends`, headers, `async`, documentação `/docs`, `TestClient`, `APIRouter`, organização de projetos |
+| 9 | [`17_fastapi.py`](17_fastapi.py) | [`18_respostas_fastapi.py`](18_respostas_fastapi.py), pacote [`api_contatos/`](api_contatos/) e [`tests/test_api_contatos.py`](tests/test_api_contatos.py) | APIs e HTTP, métodos e status codes, rotas, parâmetros de caminho e de query, Pydantic, `HTTPException`, CRUD, `Depends`, headers, `async`, documentação `/docs`, `TestClient`, `APIRouter`, organização de projetos |
 
 ## Pacotes de exemplo
 
@@ -63,12 +63,21 @@ loja/             código testado no material 15_testes.py
   precos.py
   carrinho.py
 
+api_contatos/     respostas dos exercícios 5 a 10 de FastAPI (API de contatos)
+  main.py         rode com: python -m uvicorn api_contatos.main:app --reload
+  modelos.py
+  armazenamento.py
+  dependencias.py
+  rotas/
+    contatos.py
+
 tests/            testes (pytest)
   conftest.py
   test_precos.py
   test_carrinho.py
   test_respostas_exercicios.py   respostas dos exercícios de testes
   test_fastapi.py                testes da API do 17_fastapi.py
+  test_api_contatos.py           testes da API de contatos (exercício 8 de FastAPI)
 ```
 
 ## Rodando os testes
@@ -88,6 +97,7 @@ Alguns scripts criam arquivos de exemplo. Esses arquivos estão no `.gitignore` 
 - `saida_09_arquivos/`: criada por `09_arquivos.py`, que apaga e recria a pasta a cada execução
 - `saida_10_respostas/`: criada por `10_respostas_arquivos.py`. Ela é mantida entre execuções para mostrar o log crescendo e a agenda salva
 - `tarefas/tarefas.json`: criado pelo menu `python -m tarefas.main`
+- `api_contatos/contatos.json`: criado pela API de contatos quando ela roda com o `uvicorn`. Para gravar em outro lugar, use a variável de ambiente `CONTATOS_ARQUIVO`
 
 ## Rodando a API do material de FastAPI
 
@@ -102,5 +112,9 @@ Com o servidor rodando, abra http://127.0.0.1:8000/docs para testar a API pelo n
 
 ## Próximos passos
 
-- Respostas dos exercícios de FastAPI
-- Outros assuntos sugeridos: expressões regulares (`re`), consumir APIs com `requests`, banco de dados com `sqlite3`
+Assuntos sugeridos para continuar:
+
+- Banco de dados com `sqlite3` (e trocar o JSON da API de contatos por um banco)
+- Programação assíncrona (`async`/`await`), base para entender o broker do `Server/`
+- Expressões regulares (`re`)
+- Consumir APIs com `requests`
