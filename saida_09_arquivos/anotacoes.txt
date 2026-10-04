@@ -1,3 +1,0 @@
-Estudando Python
-Hoje: arquivos
-Próximo: módulos
