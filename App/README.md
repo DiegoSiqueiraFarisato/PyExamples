@@ -6,8 +6,13 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 
 - **Python 3.10 ou mais novo.** Os materiais usam type hints como `str | None` e `list[str]`. Foram testados no Python 3.13 e no 3.14.
 - Os materiais 1 a 7 não usam nenhuma biblioteca externa. Só o exercício 10 de módulos usa `requests`, e ele é opcional.
-- O material 8 (testes) usa o `pytest`: `python -m pip install pytest`.
-- O material 9 (FastAPI) usa o FastAPI: `python -m pip install "fastapi[standard]"`.
+- A partir do material 8, os materiais usam bibliotecas externas (`pytest`, FastAPI, NumPy...). Todas estão no [`requirements.txt`](requirements.txt). Para instalar num ambiente virtual próprio da pasta `App`, no PowerShell:
+
+  ```powershell
+  py -3.13 -m venv .venv
+  .venv\Scripts\Activate.ps1
+  python -m pip install -r requirements.txt
+  ```
 
 ## Como estudar
 
@@ -35,6 +40,7 @@ Material de estudo de Python **do zero**, em português, escrito como arquivos `
 | 7 | [`13_classes.py`](13_classes.py) | [`14_respostas_classes.py`](14_respostas_classes.py) | classes e objetos, `__init__` e `self`, métodos, `__str__/__repr__`, atributos de classe, `@property`, `@classmethod/@staticmethod`, herança, polimorfismo, composição, métodos especiais, `@dataclass` |
 | 8 | [`15_testes.py`](15_testes.py) | [`16_respostas_testes.py`](16_respostas_testes.py) e [`tests/test_respostas_exercicios.py`](tests/test_respostas_exercicios.py) | `assert`, `pytest`, como ler falhas, padrão AAA, `pytest.raises`, `pytest.approx`, `parametrize`, fixtures, `conftest.py`, `tmp_path`, código testável, o que testar, cobertura, TDD |
 | 9 | [`17_fastapi.py`](17_fastapi.py) | [`18_respostas_fastapi.py`](18_respostas_fastapi.py), pacote [`api_contatos/`](api_contatos/) e [`tests/test_api_contatos.py`](tests/test_api_contatos.py) | APIs e HTTP, métodos e status codes, rotas, parâmetros de caminho e de query, Pydantic, `HTTPException`, CRUD, `Depends`, headers, `async`, documentação `/docs`, `TestClient`, `APIRouter`, organização de projetos |
+| 10 | [`19_numpy.py`](19_numpy.py) | *em breve* | por que NumPy, criar arrays, `shape` e `dtype`, indexação, view vs cópia, máscaras booleanas, vetorização, broadcasting, funções universais, agregações e `axis`, reshape, álgebra linear, números aleatórios com `default_rng`, NaN |
 
 ## Pacotes de exemplo
 
@@ -112,7 +118,14 @@ Com o servidor rodando, abra http://127.0.0.1:8000/docs para testar a API pelo n
 
 ## Próximos passos
 
-Assuntos sugeridos para continuar:
+Trilha de ciência de dados (em andamento):
+
+- Respostas dos exercícios de NumPy
+- pandas
+- statsmodels
+- scikit-learn
+
+Outros assuntos sugeridos:
 
 - Banco de dados com `sqlite3` (e trocar o JSON da API de contatos por um banco)
 - Programação assíncrona (`async`/`await`), base para entender o broker do `Server/`

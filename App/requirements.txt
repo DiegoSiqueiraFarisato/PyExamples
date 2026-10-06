@@ -1,0 +1,18 @@
+# Dependências dos materiais de estudo da pasta App.
+#
+# Instalação (da pasta App, com o venv ativado):
+#   py -3.13 -m venv .venv
+#   .venv\Scripts\Activate.ps1
+#   python -m pip install -r requirements.txt
+
+# Material 8: testes automatizados
+pytest>=8
+
+# Material 9: APIs com FastAPI
+fastapi[standard]>=0.115
+
+# Materiais 10+: ciência de dados
+numpy>=2.0
+pandas>=2.2
+statsmodels>=0.14
+scikit-learn>=1.5
