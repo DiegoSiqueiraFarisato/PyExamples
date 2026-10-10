@@ -401,7 +401,67 @@ print("Quadrados:", quadrados)
 pares = [n for n in range(10) if n % 2 == 0]
 print("Pares:", pares)
 print()
-
+#---
+#Essa linha cria uma lista com os quadrados dos números de 1 a 5. O resultado é [1, 4, 9, 16, 25].
+#Como ler
+#O jeito mais fácil é começar pelo for, que fica no meio, e depois voltar para o começo:
+#quadrados = [n ** 2   for n in range(1, 6)]
+##            ───┬──   ─────────┬──────────
+##               │              └─ 1º leia isto: "para cada n de 1 até 5"
+##               └─ 2º depois isto: "calcule n ao quadrado"
+#
+#Em português: "para cada n de 1 até 5, calcule n² e guarde numa lista chamada quadrados".
+#
+#Parte por parte
+#
+#┌─────────────┬──────────────────────────────────────────────────────────────┐
+#│   Pedaço    │                         Significado                          │
+#├─────────────┼──────────────────────────────────────────────────────────────┤
+#│ quadrados = │ guarda o resultado na variável quadrados                     │
+#├─────────────┼──────────────────────────────────────────────────────────────┤
+#│ [ ... ]     │ os colchetes dizem que o resultado vai ser uma lista         │
+#├─────────────┼──────────────────────────────────────────────────────────────┤
+#│ n ** 2      │ o que fazer com cada número: elevar ao quadrado              │
+#├─────────────┼──────────────────────────────────────────────────────────────┤
+#│ for n in    │ cada número, um de cada vez, se chama n                      │
+#├─────────────┼──────────────────────────────────────────────────────────────┤
+#│ range(1, 6) │ gera 1, 2, 3, 4, 5 (o 6 não entra, porque o fim é exclusivo) │
+#└─────────────┴──────────────────────────────────────────────────────────────┘
+#
+#O que acontece a cada passo
+#
+#┌─────┬────────┬───────────────────┐
+#│  n  │ n ** 2 │  lista até aqui   │
+#├─────┼────────┼───────────────────┤
+#│ 1   │ 1      │ [1]               │
+#├─────┼────────┼───────────────────┤
+#│ 2   │ 4      │ [1, 4]            │
+#├─────┼────────┼───────────────────┤
+#│ 3   │ 9      │ [1, 4, 9]         │
+#├─────┼────────┼───────────────────┤
+#│ 4   │ 16     │ [1, 4, 9, 16]     │
+#├─────┼────────┼───────────────────┤
+#│ 5   │ 25     │ [1, 4, 9, 16, 25] │
+#└─────┴────────┴───────────────────┘
+#
+#A mesma coisa escrita do jeito "longo"
+#
+#quadrados = []                 # 1. começa com uma lista vazia
+#for n in range(1, 6):          # 2. para cada n de 1 a 5
+#    quadrados.append(n ** 2)   # 3. adiciona n² na lista
+#print(quadrados)               # [1, 4, 9, 16, 25]
+#
+#As duas versões fazem exatamente a mesma coisa. A forma curta se chama list comprehension. É criar uma lista usando um for".
+#
+#Para fixar, troque a expressão
+#
+#[n * 10 for n in range(1, 6)]   # [10, 20, 30, 40, 50]
+#[n + 1  for n in range(1, 6)]   # [2, 3, 4, 5, 6]
+#[n      for n in range(1, 6)]   # [1, 2, 3, 4, 5]
+#
+#Só a parte antes do for mudou. Ela é a "receita" aplicada a cada número.
+    
+#----
 
 # =====================================================================
 # 9. LOOP while
